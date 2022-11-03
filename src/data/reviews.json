@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "title": "Joe's Snack Shop",
+    "abstract": "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
+    "rating": 3.5
+  },
+  {
+    "id": "2",
+    "title": "Gerry's TV",
+    "abstract": "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
+    "rating": 4.5
+  },
+  {
+    "id": "3",
+    "title": "Pieter's Flower Shack",
+    "abstract": "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
+    "rating": 4.5
+  }
+]
