@@ -16,7 +16,7 @@ import Layout from './components/Layout';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route>
+    <Route element={<Layout />}>
       <Route path="/" element={<HomePage />} />
       <Route path="*" element={<NotFoundPage />} />
       <Route path="register" element={<RegisterPage />} />
@@ -29,12 +29,7 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Layout>
-      <RouterProvider
-        router={router}
-        fallbackElement={<div>Loading....</div>}
-      />
-    </Layout>
+    <RouterProvider router={router} fallbackElement={<div>Loading....</div>} />
   </React.StrictMode>,
 );
 
