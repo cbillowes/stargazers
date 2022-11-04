@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import NotFoundPage from './NotFound';
+import Comment from '../components/Comment';
 import Comments from '../components/Comments';
 import Rating from '../components/Rating';
 
@@ -40,6 +41,15 @@ const ReviewPage = () => {
         </div>
         <div>{abstract}</div>
         <h2>Comments</h2>
+        <Comment
+          onSave={async (data) => {
+            const result = await axios.post(
+              `http://localhost:3001/api/review/${id}/comment`,
+              data,
+            );
+            setReview(result.data);
+          }}
+        />
         <Comments data={comments} />
       </div>
     );
