@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import NotFoundPage from './NotFound';
+import Comments from '../components/Comments';
 import Rating from '../components/Rating';
 
 const ReviewPage = () => {
@@ -39,6 +40,7 @@ const ReviewPage = () => {
         </div>
         <div>{abstract}</div>
         <h2>Comments</h2>
+        <Comments data={comments} />
       </div>
     );
   }
