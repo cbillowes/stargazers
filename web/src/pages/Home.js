@@ -13,16 +13,17 @@ const HomePage = () => {
     fetch();
   }, []);
 
-  if (reviews.length === 0) {
-    return <div>No results</div>
+  if (reviews && reviews.length === 0) {
+    return <div>No results</div>;
   }
 
-  return reviews.map(({ id, title, abstract, rating }) => {
+  return reviews.map(({ slug, title, abstract, rating }) => {
     return (
-      <div key={id}>
-        <h2>
-          <Link to={`/review/${id}`}>{title}</Link> / {rating} ✨
-        </h2>
+      <div key={slug} className="mb-10">
+        <h1 className="text-2xl mb-1">
+          <Link to={`/review/${slug}`}>{title}</Link>
+          {rating && <span className="ml-2">⭐ {rating}</span>}
+        </h1>
         <p>{abstract}</p>
       </div>
     );

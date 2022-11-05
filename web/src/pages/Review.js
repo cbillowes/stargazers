@@ -7,44 +7,44 @@ import Comments from '../components/Comments';
 import Rating from '../components/Rating';
 
 const ReviewPage = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const [review, setReview] = useState();
 
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        `http://localhost:3001/api/reviews/${id}`,
+        `http://localhost:3001/api/reviews/${slug}`,
       );
       setReview(response.data);
     };
     fetch();
-  }, [id]);
+  }, [slug]);
 
   if (review) {
     const { title, abstract, rating, comments } = review;
     return (
       <div>
-        <h1>
-          {title} / {rating} ✨
+        <h1 className="text-2xl mb-1">
+          {title}
+          {rating && <span className="ml-2">⭐ {rating}</span>}
         </h1>
-        <div>
-          Rate now:{' '}
-          <Rating
-            value={rating}
-            handleSave={async (rating) => {
-              const result = await axios.put(
-                `http://localhost:3001/api/review/${id}/rate/${rating}`,
-              );
-              setReview(result.data);
-            }}
-          />
-        </div>
-        <div>{abstract}</div>
-        <h2>Comments</h2>
+        <div className="mb-5">{abstract}</div>
+        <Rating
+          title="Your rating"
+          max={5}
+          value={rating}
+          onRated={async (rating) => {
+            const result = await axios.put(
+              `http://localhost:3001/api/review/${slug}/rate/${rating}`,
+            );
+            setReview(result.data);
+          }}
+        />
         <Comment
+          commentOn={title}
           onSave={async (data) => {
             const result = await axios.post(
-              `http://localhost:3001/api/review/${id}/comment`,
+              `http://localhost:3001/api/review/${slug}/comment`,
               data,
             );
             setReview(result.data);
