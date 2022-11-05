@@ -22,7 +22,7 @@ const router = createBrowserRouter(
       <Route path="*" element={<NotFoundPage />} />
       <Route path="register" element={<RegisterPage />} />
       <Route path="login" element={<LoginPage />} />
-      <Route path="review/:id" element={<ReviewPage />} />
+      <Route path="review/:slug" element={<ReviewPage />} />
     </Route>,
   ),
 );
