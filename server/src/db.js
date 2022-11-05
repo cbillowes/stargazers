@@ -9,18 +9,20 @@ const closeConnection = () => {
   console.info(`Successfully closed MongoDB instance to ${url}`);
 };
 
+const openConnection = async () => {
+  await client.connect();
+  console.info(`Successfully connected to MongoDB instance at ${url}`);
+};
+
 const withCollection = async (name, executeQuery) => {
   try {
-    await client.connect();
-    console.info(`Successfully connected to MongoDB instance to ${url}`);
     const db = client.db(dbName);
     const collection = db.collection(name);
     return await executeQuery(collection);
   } catch (e) {
-    console.error(e);
     closeConnection();
-    throw new Error('An unhandled exception occurred.');
+    throw e;
   }
 };
 
-export { withCollection };
+export { openConnection, closeConnection, withCollection };
