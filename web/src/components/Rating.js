@@ -1,23 +1,18 @@
 import { useRef, useState } from 'react';
 import { Form } from './Controls';
 
-const getFillClassName = (number, isHover, isActive) => {
-  if (isHover) {
-    return `fill-green-${number}`;
-  }
-  if (isActive) {
-    return `fill-yellow-${number}`;
-  }
-  return `fill-slate-${number}`;
-};
-
 const LeftStar = ({ value, isHover, isActive, onHover, onRated }) => {
   const leftStar = useRef();
-  const fillClassName = getFillClassName(500, isHover, isActive);
   return (
     <path
       ref={leftStar}
-      className={`cursor-pointer ${fillClassName}`}
+      className={`cursor-pointer ${
+        isHover
+          ? 'fill-green-500'
+          : isActive
+          ? 'fill-yellow-500'
+          : 'fill-slate-500'
+      }`}
       d="M256.024,391.104L97.4,512l60.592-195.608L0,196.032h195.264L256.024,0"
       onClick={() => onRated(value)}
       onMouseEnter={() => onHover(value)}
@@ -27,11 +22,16 @@ const LeftStar = ({ value, isHover, isActive, onHover, onRated }) => {
 
 const RightStar = ({ value, isHover, isActive, onHover, onRated }) => {
   const rightStar = useRef();
-  const fillClassName = getFillClassName(600, isHover, isActive);
   return (
     <path
       ref={rightStar}
-      className={`cursor-pointer ${fillClassName}`}
+      className={`cursor-pointer ${
+        isHover
+          ? 'fill-green-600'
+          : isActive
+          ? 'fill-yellow-600'
+          : 'fill-slate-600'
+      }`}
       d="M414.616,512L256.024,391.104L97.4,512l60.592-195.608L0,196.032h195.264L256.024,0l60.736,196.032 H512l-157.968,120.36L414.616,512z"
       onClick={() => onRated(value)}
       onMouseEnter={() => onHover(value)}
