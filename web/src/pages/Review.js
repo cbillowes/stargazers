@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { API_ENDPOINT } from '../constants';
 import axios from 'axios';
 import NotFoundPage from './NotFound';
 import Comment from '../components/Comment';
@@ -12,9 +13,7 @@ const ReviewPage = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get(
-        `http://localhost:3001/api/reviews/${slug}`,
-      );
+      const response = await axios.get(`${API_ENDPOINT}/api/reviews/${slug}`);
       setReview(response.data);
     };
     fetch();
@@ -35,7 +34,7 @@ const ReviewPage = () => {
           value={rating}
           onRated={async (rating) => {
             const result = await axios.put(
-              `http://localhost:3001/api/review/${slug}/rate/${rating}`,
+              `${API_ENDPOINT}/api/review/${slug}/rate/${rating}`,
             );
             setReview(result.data);
           }}
@@ -44,7 +43,7 @@ const ReviewPage = () => {
           commentOn={title}
           onSave={async (data) => {
             const result = await axios.post(
-              `http://localhost:3001/api/review/${slug}/comment`,
+              `${API_ENDPOINT}/api/review/${slug}/comment`,
               data,
             );
             setReview(result.data);

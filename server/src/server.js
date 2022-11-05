@@ -7,11 +7,12 @@ import {
   getReviewBySlug,
   rateReview,
 } from './reviews.js';
+import { PORT, ENABLE_CORS_FOR_ORIGIN } from './constants.js';
 
 const app = express();
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: ENABLE_CORS_FOR_ORIGIN,
   }),
 );
 app.use(express.json());
@@ -71,7 +72,7 @@ app.post('/api/review/:slug/comment', async (req, res) => {
   }
 });
 
-app.listen('3001', async () => {
-  console.log('Listening on http://localhost:3001');
+app.listen(PORT, async () => {
+  console.log(`Listening on http://localhost:${PORT}`);
   await openMongoDbConnection();
 });

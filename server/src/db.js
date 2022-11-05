@@ -1,7 +1,8 @@
 import { MongoClient } from 'mongodb';
+import { MONGODB_NAME, MONGODB_URL } from './constants.js';
 
-const url = 'mongodb://127.0.0.1:27017';
-const dbName = 'stargazers-db';
+const url = MONGODB_URL;
+const dbName = MONGODB_NAME;
 const client = new MongoClient(url);
 
 const closeConnection = () => {

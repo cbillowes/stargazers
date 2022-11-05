@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { API_ENDPOINT } from '../constants';
 import axios from 'axios';
 
 const HomePage = () => {
@@ -7,7 +8,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get(`http://localhost:3001/api/reviews`);
+      const response = await axios.get(`${API_ENDPOINT}/api/reviews`);
       setReviews(response.data);
     };
     fetch();

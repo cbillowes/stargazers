@@ -44,7 +44,6 @@ const TextBox = forwardRef(
 
 const TextArea = forwardRef(
   ({ label, isRequired, placeholder, rows, ...rest }, ref) => {
-    console.log(ref);
     return (
       <Label label={label} isRequired={isRequired}>
         <textarea
