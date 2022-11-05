@@ -13,6 +13,7 @@ import LoginPage from './pages/Login';
 import ReviewPage from './pages/Review';
 import NotFoundPage from './pages/NotFound';
 import Layout from './components/Layout';
+import './styles.css';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

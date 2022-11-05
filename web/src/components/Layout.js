@@ -1,12 +1,13 @@
 import { Outlet } from 'react-router-dom';
 import Navigation from './Navigation';
-import '../styles.css';
 
 const Layout = () => {
   return (
-    <div>
+    <div className="bg-slate-900 text-slate-300">
       <Navigation />
-      <Outlet />
+      <div className="max-w-3xl mx-auto py-5 px-5">
+        <Outlet />
+      </div>
     </div>
   );
 };
