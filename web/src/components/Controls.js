@@ -11,7 +11,7 @@ const Form = ({ title, children }) => {
 
 const Label = ({ label, children, isRequired }) => {
   return (
-    <label className="text-sm cursor-pointer">
+    <label className="w-full text-sm cursor-pointer">
       {label}
       {isRequired ? (
         <span className="bg-pink-800 text-white text-xs py-1 px-2 rounded-md float-right">
