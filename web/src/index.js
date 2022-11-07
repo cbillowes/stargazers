@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
+import { firebaseApp } from './firebase';
 import {
   Route,
   RouterProvider,
@@ -14,6 +15,8 @@ import ReviewPage from './pages/Review';
 import NotFoundPage from './pages/NotFound';
 import Layout from './components/Layout';
 import './styles.css';
+
+firebaseApp();
 
 const router = createBrowserRouter(
   createRoutesFromElements(
