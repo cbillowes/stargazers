@@ -70,4 +70,17 @@ const Button = ({ children, onClick }) => {
   );
 };
 
-export { Form, Label, TextBox, TextArea, Button };
+const Alert = ({ children, onClose }) => {
+  return (
+    <div className="bg-pink-700 text-pink-300 mt-6 py-2 px-5 rounded-md text-sm relative">
+      {children}
+      <button
+        className="absolute top-1 right-2"
+        onClick={onClose}
+      >
+        &times;
+      </button>
+    </div>
+  );
+};
+export { Form, Label, TextBox, TextArea, Button, Alert};
