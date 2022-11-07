@@ -19,6 +19,20 @@ app.use(
   }),
 );
 app.use(express.json());
+app.use(async (req, res, next) => {
+  const { authtoken } = req.headers;
+  if (authtoken) {
+    try {
+      req.user = await firebaseAdmin.auth().verifyIdToken(authtoken);
+    } catch (e) {
+      res.status(400).json({
+        error: e.message,
+      });
+      return;
+    }
+  }
+  next();
+});
 
 app.get('/api/reviews', async (_, res) => {
   const reviews = await getAllReviews();
