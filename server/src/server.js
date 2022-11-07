@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { openConnection as openMongoDbConnection } from './db.js';
+import { firebaseAdmin as firebaseInitializeAdminApp } from './firebase.js';
 import {
   commentOnReview,
   getAllReviews,
@@ -8,6 +9,8 @@ import {
   rateReview,
 } from './reviews.js';
 import { PORT, ENABLE_CORS_FOR_ORIGIN } from './constants.js';
+
+const firebaseAdmin = firebaseInitializeAdminApp();
 
 const app = express();
 app.use(
