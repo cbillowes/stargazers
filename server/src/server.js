@@ -54,7 +54,15 @@ app.get('/api/reviews/:slug', async (req, res) => {
 
 app.put('/api/review/:slug/rate/:rating', async (req, res) => {
   const { slug, rating } = req.params;
-  await rateReview(slug, rating);
+  const { uid } = req.user || {};
+  try {
+    await rateReview(slug, uid, rating);
+  } catch (e) {
+    res.status(403).json({
+      error: e.message,
+    });
+    return;
+  }
   const review = await getReviewBySlug(slug);
   if (review) {
     res.json(review);

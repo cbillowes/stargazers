@@ -31,11 +31,24 @@ const getAllReviews = () => {
   });
 };
 
-const rateReview = (slug, rating) => {
+const getRatingsWithThisUserRating = (ratings, userId, total) => {
+  const filtered = ratings?.filter((r) => r.userId !== userId) || [];
+  return [...filtered, { userId, total }];
+};
+
+const rateReview = (slug, userId, rating) => {
+  if (!userId) {
+    throw new Error('UNAUTHORIZED');
+  }
   return withCollection(collectionName, async (collection) => {
     const total = parseFloat(rating, 0);
     const review = await getReviewBySlug(slug);
-    const average = calculateAverage([...(review?.ratings || []), { total }]);
+    const ratings = getRatingsWithThisUserRating(
+      review?.ratings,
+      userId,
+      total,
+    );
+    const average = calculateAverage(ratings);
     return await collection.updateOne(
       {
         slug,
@@ -43,11 +56,8 @@ const rateReview = (slug, rating) => {
       {
         $set: {
           rating: average,
-        },
-        $push: {
-          ratings: {
-            total,
-          },
+          ratings: ratings,
+          totalRatings: ratings.filter((r) => r.total > 0).length,
         },
       },
     );
