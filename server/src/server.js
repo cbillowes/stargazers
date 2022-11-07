@@ -43,6 +43,7 @@ app.get('/api/reviews/:slug', async (req, res) => {
   const { slug } = req.params;
   const review = await getReviewBySlug(slug);
   if (review) {
+    delete review.ratings;
     res.json(review);
   } else {
     res.status(404).json({
@@ -65,6 +66,7 @@ app.put('/api/review/:slug/rate/:rating', async (req, res) => {
   }
   const review = await getReviewBySlug(slug);
   if (review) {
+    delete review.ratings;
     res.json(review);
   } else {
     res.status(404).json({
