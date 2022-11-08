@@ -31,7 +31,10 @@ const ReviewPage = () => {
         </h1>
         {totalRatings > 0 && (
           <div className="text-xs">
-            {totalRatings === 1 ? 'There has been 1 rating' : `${totalRatings} ratings`} so far.
+            {totalRatings === 1
+              ? 'There has been 1 rating'
+              : `${totalRatings} ratings`}{' '}
+            so far.
           </div>
         )}
         <div className="mt-4 mb-5">{abstract}</div>
