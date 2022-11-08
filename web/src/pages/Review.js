@@ -65,6 +65,7 @@ const ReviewPage = () => {
               }}
             />
             <Comment
+              user={user}
               commentOn={title}
               onSave={async (data) => {
                 const token = user && (await user.getIdToken());

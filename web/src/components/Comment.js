@@ -1,43 +1,22 @@
 import { useRef } from 'react';
-import { Button, Form, TextArea, TextBox } from './Controls';
+import { Button, Form, TextArea } from './Controls';
 
-const Comment = ({ commentOn, onSave }) => {
-  const name = useRef();
-  const email = useRef();
+const Comment = ({ user, commentOn, onSave }) => {
   const comment = useRef();
 
-  const resetForm = () => {
-    name.current.value = '';
-    email.current.value = '';
-    comment.current.value = '';
-  };
+  if (!user) return <></>;
 
   const handleSave = () => {
     onSave &&
       onSave({
-        name: name.current.value,
-        email: email.current.value,
+        name: user.email,
         comment: comment.current.value,
       });
-    resetForm();
   };
 
   return (
     <Form title={<span> What did you think? 💭</span>}>
       <form onSubmit={(e) => e.preventDefault()}>
-        <TextBox
-          ref={email}
-          label="Your email address"
-          type="email"
-          placeholder="For feedback only"
-        />
-        <TextBox
-          ref={name}
-          label="Your name"
-          isRequired
-          type="text"
-          placeholder="Appears on your comment"
-        />
         <TextArea
           ref={comment}
           label="Your comment"
