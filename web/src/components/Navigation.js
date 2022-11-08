@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { getAuth, signOut } from 'firebase/auth';
 import useUser from '../hooks/useUser';
 
 const Navigation = () => {
@@ -32,7 +33,11 @@ const Navigation = () => {
                   <Link to="/profile">{user.email}</Link>
                 </li>
                 <li>
-                  <button onClick={async () => await user.logout()}>
+                  <button
+                    onClick={async () => {
+                      await signOut(getAuth());
+                    }}
+                  >
                     Logout
                   </button>
                 </li>
