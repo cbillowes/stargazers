@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path';
 import cors from 'cors';
 import { openConnection as openMongoDbConnection } from './db.js';
 import { firebaseAdmin as firebaseInitializeAdminApp } from './firebase.js';
@@ -10,6 +11,7 @@ import {
 } from './reviews.js';
 import { PORT, ENABLE_CORS_FOR_ORIGIN } from './constants.js';
 
+const __cwd = process.cwd();
 const firebaseAdmin = firebaseInitializeAdminApp();
 
 const app = express();
@@ -19,6 +21,7 @@ app.use(
   }),
 );
 app.use(express.json());
+app.use(express.static(path.join(__cwd, 'build')));
 app.use(async (req, res, next) => {
   const { authtoken } = req.headers;
   if (authtoken) {
@@ -32,6 +35,10 @@ app.use(async (req, res, next) => {
     }
   }
   next();
+});
+
+app.get(/^(?!\/api).+/, (req, res) => {
+  res.sendFile(path.join(__cwd, 'build/index.html'));
 });
 
 app.get('/api/reviews', async (_, res) => {
