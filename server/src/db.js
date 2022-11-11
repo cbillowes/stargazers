@@ -1,18 +1,26 @@
 import { MongoClient } from 'mongodb';
-import { MONGODB_NAME, MONGODB_URL } from './constants.js';
+import {
+  MONGODB_NAME,
+  MONGODB_USERNAME,
+  MONGODB_PASSWORD,
+  MONGODB_MASKED_URL,
+} from './constants.js';
 
-const url = MONGODB_URL;
+const maskedUrl = MONGODB_MASKED_URL;
+const url = maskedUrl
+  .replace('<username>', MONGODB_USERNAME)
+  .replace('<password>', MONGODB_PASSWORD);
 const dbName = MONGODB_NAME;
 const client = new MongoClient(url);
 
 const closeConnection = () => {
   client.close();
-  console.info(`Successfully closed MongoDB instance to ${url}`);
+  console.info(`Successfully closed MongoDB instance to ${maskedUrl}`);
 };
 
 const openConnection = async () => {
   await client.connect();
-  console.info(`Successfully connected to MongoDB instance at ${url}`);
+  console.info(`Successfully connected to MongoDB instance at ${maskedUrl}`);
 };
 
 const withCollection = async (name, executeQuery) => {

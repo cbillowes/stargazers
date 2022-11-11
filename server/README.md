@@ -3,8 +3,9 @@
 ## Environment variables
 
 ```text
-PORT="3001"
-MONGODB_URL="mongodb://127.0.0.1:27017"
+ENV="development"
+MONGODB_MASKED_URL="mongodb://127.0.0.1:27017"
 MONGODB_NAME="stargazers-db"
-ENABLE_CORS_FOR_ORIGIN="http://localhost:3000"
+CORS_ORIGINS="http://localhost:3000"
+PORT="3001"
 ```

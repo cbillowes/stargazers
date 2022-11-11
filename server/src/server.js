@@ -9,7 +9,7 @@ import {
   getReviewBySlug,
   rateReview,
 } from './reviews.js';
-import { PORT, ENABLE_CORS_FOR_ORIGIN } from './constants.js';
+import { PORT, CORS_ORIGINS } from './constants.js';
 
 const __cwd = process.cwd();
 const firebaseAdmin = firebaseInitializeAdminApp();
@@ -17,7 +17,7 @@ const firebaseAdmin = firebaseInitializeAdminApp();
 const app = express();
 app.use(
   cors({
-    origin: ENABLE_CORS_FOR_ORIGIN,
+    origin: CORS_ORIGINS,
   }),
 );
 app.use(express.json());
