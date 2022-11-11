@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo "Building web application..."
+cd web; npm run build; cp -R build ../server; cd ..;
+
+echo "Done."
