@@ -30,4 +30,4 @@ yarn-error.log*
 
 server/db/
 credentials.json
-app-prod-env.yaml
+app-secrets.yaml
