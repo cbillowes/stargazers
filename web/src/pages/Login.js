@@ -18,7 +18,7 @@ const LoginPage = () => {
         email.current.value,
         password.current.value,
       );
-      navigate('/profile');
+      navigate('/');
     } catch (e) {
       setErrorMessage(e.message);
     }
