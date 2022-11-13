@@ -29,9 +29,7 @@ const Navigation = () => {
             )}
             {user && (
               <>
-                <li>
-                  <Link to="/profile">{user.email}</Link>
-                </li>
+                <li>{user.email}</li>
                 <li>
                   <button
                     onClick={async () => {
